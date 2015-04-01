@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.asynimg.BitmapWorkerTask.AsyncDrawable;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class UpdateAdater2 extends BaseAdapter{
@@ -25,12 +27,14 @@ public class UpdateAdater2 extends BaseAdapter{
 	private List<Map<String, String>> resturantsList;
 	private Map<String, SoftReference<Bitmap>> caches;
 	private LayoutInflater mInflater;
-	public  UpdateAdater2(Context context,List<Map<String, String>> resturants,Map<String, SoftReference<Bitmap>> caches) {
+	private PullToRefreshListView mListView;
+	public  UpdateAdater2(Context context,List<Map<String, String>> resturants,Map<String, SoftReference<Bitmap>> caches,PullToRefreshListView mListView) {
 		this.context=context;
 	//	this.bitmaps=bitmaps;
 		this.resturantsList=resturants;
 		this.caches=caches;
 		mInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		this.mListView=mListView;
 	}
 	public int getCount() {
 //		return bitmaps.size();
@@ -105,5 +109,6 @@ public class UpdateAdater2 extends BaseAdapter{
 	public void addItems(List<Map<String, String>> rList) {
 		resturantsList.addAll(rList);
 		notifyDataSetChanged();
+		mListView.onRefreshComplete();
 	}
 }

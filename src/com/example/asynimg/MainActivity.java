@@ -13,6 +13,9 @@ import java.util.Map;
 import org.apache.http.client.ClientProtocolException;
 
 import com.example.asynimg.BitmapWorkerTask.AsyncDrawable;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 
 import android.support.v7.app.ActionBarActivity;
 import android.graphics.Bitmap;
@@ -29,18 +32,22 @@ import android.widget.ListView;
 
 
 public class MainActivity extends ActionBarActivity {
-
+	 private PullToRefreshListView mPullToRefreshListView;
 	 Map<String, SoftReference<Bitmap>>  caches;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        ImageView imageView1=(ImageView)findViewById(R.id.imageView1);
-        String url="http://10.0.2.2:8080/DingCan/index.php/server/showResturant/getResByPlace";
+        final String url="http://10.0.2.2:8080/DingCan/index.php/server/showResturant/getResByPlace";
 //        loadBitmap(url, imageView1);
 
         caches=new HashMap<String, SoftReference<Bitmap>>();
-        ListView listView1=(ListView)findViewById(R.id.listView1);
+//        ListView listView1=(ListView)findViewById(R.id.listView1);
+        mPullToRefreshListView = (PullToRefreshListView)findViewById(R.id.pull_refresh_list);
+        ListView listView1 = mPullToRefreshListView.getRefreshableView();
+        mPullToRefreshListView.setMode(Mode.BOTH);
+
         //获取餐厅列表方法1.0版本
      //   UpdateAdater updateAdater=new UpdateAdater(this, new ArrayList<String>(),caches);
 //        new ResturantWorker(updateAdater).execute(url,"0","2");
@@ -56,10 +63,25 @@ public class MainActivity extends ActionBarActivity {
 //        updateAdater.addItems(urlStrings);
         
         //获取餐厅列表方法2.0测试
-        UpdateAdater2 updateAdater2=new UpdateAdater2(this, new ArrayList<Map<String,String>>(), caches);
+        final UpdateAdater2 updateAdater2=new UpdateAdater2(this, new ArrayList<Map<String,String>>(), caches,mPullToRefreshListView);
         listView1.setAdapter(updateAdater2);
         String  current=String.valueOf(updateAdater2.getCount());
-        new ResturantWorker(updateAdater2).execute(url,current,"7");
+        new ResturantWorker(updateAdater2).execute(url,current,"2");
+        //上拉下拉更新餐厅列表测试
+        mPullToRefreshListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+        	  @Override
+        	  public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+        		 String  current=String.valueOf(updateAdater2.getCount());
+               new ResturantWorker(updateAdater2).execute(url,current,"2");
+//               mPullToRefreshListView.onRefreshComplete();
+        	  }
+        	  @Override
+        	  public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+        		 String  current=String.valueOf(updateAdater2.getCount());
+               new ResturantWorker(updateAdater2).execute(url,current,"2");
+//               mPullToRefreshListView.onRefreshComplete();
+        	  }
+        	});
     }
     public void loadBitmap(String url,ImageView imageView) {
 		if (BitmapWorkerTask.cancelPotentialWork(url, imageView)) {
