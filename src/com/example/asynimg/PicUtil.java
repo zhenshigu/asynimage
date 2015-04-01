@@ -2,12 +2,32 @@ package com.example.asynimg;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.R.integer;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -28,6 +48,39 @@ public class PicUtil {
 		}
 		return icon;
 	}
+	public static String getResturant(String resurl,String start,String num) throws ClientProtocolException, IOException {
+		HttpClient client=new DefaultHttpClient();
+		HttpPost request=new HttpPost(resurl);
+		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
+		postParameters.add(new BasicNameValuePair("start", start));
+		postParameters.add(new BasicNameValuePair("num", num));
+		String result=null;
+		try {
+			UrlEncodedFormEntity formEntity=new UrlEncodedFormEntity(postParameters);
+			request.setEntity(formEntity);
+			HttpResponse response=client.execute(request);
+			 result=EntityUtils.toString(response.getEntity());
+			 Log.i("picutil getresturant", result);
+//			 JSONArray resJsonArray=new JSONArray(result);
+//			 for (int i = 0; i < resJsonArray.length(); i++) {
+//					JSONObject tmp=resJsonArray.getJSONObject(i);
+//					Map<String, String> tmpMap=new HashMap<String, String>();
+//					tmpMap.put("name", tmp.getString("name"));
+//					Log.i("resturantworker onpostexecute", tmp.getString("name"));
+//					tmpMap.put("phone", tmp.getString("phone"));
+//					tmpMap.put("image", tmp.getString("image"));
+//					tmpMap.put("shen", tmp.getString("shen"));
+//					tmpMap.put("shi", tmp.getString("shi"));
+//					tmpMap.put("xian", tmp.getString("xian"));
+//					tmpList.add(tmpMap);
+//				}
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return result;
+	}
+
 	public static Bitmap getbitmap(String imageUri) {
 		Bitmap bitmap=null;
 		try {
