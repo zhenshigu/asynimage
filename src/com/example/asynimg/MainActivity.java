@@ -73,13 +73,11 @@ public class MainActivity extends ActionBarActivity {
         	  public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
         		 String  current=String.valueOf(updateAdater2.getCount());
                new ResturantWorker(updateAdater2).execute(url,current,"2");
-//               mPullToRefreshListView.onRefreshComplete();
         	  }
         	  @Override
         	  public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         		 String  current=String.valueOf(updateAdater2.getCount());
                new ResturantWorker(updateAdater2).execute(url,current,"2");
-//               mPullToRefreshListView.onRefreshComplete();
         	  }
         	});
     }

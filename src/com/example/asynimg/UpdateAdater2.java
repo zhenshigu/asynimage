@@ -68,7 +68,9 @@ public class UpdateAdater2 extends BaseAdapter{
 //		loadBitmap(bitmaps.get(position), holder.imageView);
 		holder.titleTextView.setText(resturantsList.get(position).get("name"));
 		holder.addressTextView.setText(resturantsList.get(position).get("shen")+resturantsList.get(position).get("shi")+resturantsList.get(position).get("xian"));
+		Log.i("updateadater2-getview", resturantsList.get(position).get("image"));
 		loadBitmap(resturantsList.get(position).get("image"), holder.imageView);
+		
 		return convertView;
 	}
 	 public void loadBitmap(String url,ImageView imageView) {
