@@ -13,6 +13,7 @@ public class Index extends TabActivity  {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		ExitUtil.activityList.add(this);
 		final TabHost tabHost=getTabHost();
 		tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("餐厅").setContent(new Intent(this,MainActivity.class)));
 		tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("我的").setContent(new Intent(this,P1.class)));

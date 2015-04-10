@@ -1,11 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffffffff"
     android:orientation="vertical" >
-
 <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/pull_refresh_list"
+        android:id="@+id/refresh_caishi"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 </LinearLayout>

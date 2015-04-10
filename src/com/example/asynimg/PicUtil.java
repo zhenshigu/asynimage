@@ -80,7 +80,28 @@ public class PicUtil {
 		} 
 		return result;
 	}
-
+//=======20150409 add function of getting caishi==================
+	public static String getCai(String caiurl,String start,String num,String rid) throws ClientProtocolException, IOException {
+		HttpClient client=new DefaultHttpClient();
+		HttpPost request=new HttpPost(caiurl);
+		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
+		postParameters.add(new BasicNameValuePair("rid", rid));
+		postParameters.add(new BasicNameValuePair("start", start));
+		postParameters.add(new BasicNameValuePair("num", num));
+		String result=null;
+		try {
+			UrlEncodedFormEntity formEntity=new UrlEncodedFormEntity(postParameters);
+			request.setEntity(formEntity);
+			HttpResponse response=client.execute(request);
+			 result=EntityUtils.toString(response.getEntity());
+			 Log.i("picutil getresturant", result);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return result;
+	}
+	//============================================================
 	public static Bitmap getbitmap(String imageUri) {
 		Bitmap bitmap=null;
 		try {

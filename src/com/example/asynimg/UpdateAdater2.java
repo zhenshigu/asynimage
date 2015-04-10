@@ -7,7 +7,9 @@ import java.util.Map;
 import com.example.asynimg.BitmapWorkerTask.AsyncDrawable;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -15,8 +17,10 @@ import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -61,6 +65,9 @@ public class UpdateAdater2 extends BaseAdapter{
 			holder.imageView=(ImageView)convertView.findViewById(R.id.imageView1);
 			holder.titleTextView=(TextView)convertView.findViewById(R.id.title);
 			holder.addressTextView=(TextView)convertView.findViewById(R.id.address);
+			//=============20150409add the button to click to the detail of the restaurant===================
+			holder.button=(Button)convertView.findViewById(R.id.button1);
+			//============================================================================
 			convertView.setTag(holder);
 		}else {
 			holder=(viewholder)convertView.getTag();
@@ -68,9 +75,22 @@ public class UpdateAdater2 extends BaseAdapter{
 //		loadBitmap(bitmaps.get(position), holder.imageView);
 		holder.titleTextView.setText(resturantsList.get(position).get("name"));
 		holder.addressTextView.setText(resturantsList.get(position).get("shen")+resturantsList.get(position).get("shi")+resturantsList.get(position).get("xian"));
+		//------------------------------------------20150409 add the button click event----------------------------------------------------
+		final String rid=resturantsList.get(position).get("rid");
+		holder.button.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent();
+				intent.setComponent(new ComponentName("com.example.asynimg", "com.example.asynimg.Caishi"));
+				intent.putExtra("rid", rid);
+				context.startActivity(intent);
+			}
+		});
+		//=======================================================================================
 		Log.i("updateadater2-getview", resturantsList.get(position).get("image"));
 		loadBitmap(resturantsList.get(position).get("image"), holder.imageView);
-		
 		return convertView;
 	}
 	 public void loadBitmap(String url,ImageView imageView) {
@@ -103,6 +123,7 @@ public class UpdateAdater2 extends BaseAdapter{
 		ImageView imageView;
 		TextView titleTextView;
 		TextView addressTextView;
+		Button button;
 	}
 //	public void addItems(List<String> urls) {
 //		bitmaps.addAll(urls);

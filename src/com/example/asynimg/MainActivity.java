@@ -37,6 +37,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ExitUtil.activityList.add(this);
         setContentView(R.layout.activity_main);
 //        ImageView imageView1=(ImageView)findViewById(R.id.imageView1);
         final String url="http://10.0.2.2:8080/DingCan/index.php/server/showResturant/getResByPlace";

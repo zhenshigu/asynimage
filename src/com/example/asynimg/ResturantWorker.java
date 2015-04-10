@@ -48,6 +48,9 @@ public class ResturantWorker extends AsyncTask<String, Void, String>{
 					for (int i = 0; i < resJsonArray.length(); i++) {
 						JSONObject tmp=resJsonArray.getJSONObject(i);
 						Map<String, String> tmpMap=new HashMap<String, String>();
+						//=======20140409 add the rid field===================
+						tmpMap.put("rid", tmp.getString("rid"));
+						//=================================================
 						tmpMap.put("name", tmp.getString("name"));
 						Log.i("resturantworker onpostexecute", tmp.getString("name"));
 						tmpMap.put("phone", tmp.getString("phone"));
