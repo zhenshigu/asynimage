@@ -5,5 +5,31 @@
 <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/refresh_caishi"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:layout_weight="1" >
+</com.handmark.pulltorefresh.library.PullToRefreshListView>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="4" >
+        <Button
+        android:id="@+id/buycar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+        <TextView
+            android:id="@+id/carinfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/btnok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+        
+    </LinearLayout>
 </LinearLayout>

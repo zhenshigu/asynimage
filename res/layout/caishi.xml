@@ -42,8 +42,20 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/cdel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="del" />
+     <TextView
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:visibility="gone"
+                android:text="0" />
+    <Button
         android:id="@+id/cbuy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="购买" />
+        android:text="add" />
 </LinearLayout>
