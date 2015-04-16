@@ -9,5 +9,8 @@
     <string name="title_activity_caishi">Caishi</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_register">Register</string>
+    <string name="title_activity_confirm_order">ConfirmOrder</string>
+    <string name="title_activity_manage_address">ManageAddress</string>
+    <string name="title_activity_add_adr">AddAdr</string>
 
 </resources>

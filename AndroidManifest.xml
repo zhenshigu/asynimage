@@ -50,6 +50,18 @@
             android:name=".Register"
             android:label="@string/title_activity_register" >
         </activity>
+        <activity
+            android:name=".ConfirmOrder"
+            android:label="@string/title_activity_confirm_order" >
+        </activity>
+        <activity
+            android:name=".ManageAddress"
+            android:label="@string/title_activity_manage_address" >
+        </activity>
+        <activity
+            android:name=".AddAdr"
+            android:label="@string/title_activity_add_adr" >
+        </activity>
     </application>
 
 </manifest>

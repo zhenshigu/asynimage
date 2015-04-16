@@ -39,6 +39,10 @@ public class P1 extends ActionBarActivity {
 				case 0:
 					LinearLayout layout=(LinearLayout)findViewById(R.id.logintip);
 					layout.setVisibility(View.GONE);
+					LinearLayout layout2=(LinearLayout)findViewById(R.id.myaddress);
+					layout2.setVisibility(View.VISIBLE);
+					
+					
 					ListView personinfo=(ListView)findViewById(R.id.personinfo);
 					personinfo.setVisibility(View.VISIBLE);
 					ArrayAdapter<String> infoAdapter=new ArrayAdapter<String>(P1.this, android.R.layout.simple_list_item_1);
@@ -46,6 +50,15 @@ public class P1 extends ActionBarActivity {
 					infoAdapter.add(sharedPreferences.getString("email", "null"));
 					infoAdapter.add(sharedPreferences.getString("phone", "null"));
 					personinfo.setAdapter(infoAdapter);
+					Button manageAddr=(Button)findViewById(R.id.button1);
+					manageAddr.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View view) {
+							// TODO Auto-generated method stub
+							
+						}
+					});
 					break;
 				case 1:
 					Toast.makeText(getApplicationContext(), "自动登录失败",
@@ -93,6 +106,19 @@ public class P1 extends ActionBarActivity {
 		else {
 			LinearLayout layout=(LinearLayout)findViewById(R.id.logintip);
 			layout.setVisibility(View.GONE);
+			LinearLayout layout2=(LinearLayout)findViewById(R.id.myaddress);
+			layout2.setVisibility(View.VISIBLE);
+			Button addButton=(Button)findViewById(R.id.button1);
+			addButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					Intent intent=new Intent();
+					intent.setComponent(new ComponentName(getPackageName(), "com.example.asynimg.ManageAddress"));
+					startActivity(intent);
+				}
+			});
 			ListView personinfo=(ListView)findViewById(R.id.personinfo);
 			personinfo.setVisibility(View.VISIBLE);
 			ArrayAdapter<String> infoAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
