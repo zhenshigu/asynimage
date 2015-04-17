@@ -22,6 +22,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,10 +36,14 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 public class PicUtil {
 	private static final String TAG="PicUtil";
+	private static final int REQUEST_TIMEOUT = 5 * 1000;// 设置请求超时10秒钟
+	 private static final int SO_TIMEOUT = 10 * 1000; // 设置等待数据超时时间10秒钟
 	public static  BitmapDrawable getfriendicon(URL imageUri) {
 		BitmapDrawable icon=null;
 		try {
@@ -172,4 +179,11 @@ public class PicUtil {
 	        }
 	        return builder.toString();
 	    }
+	 public static HttpClient getHttpClient() {
+			BasicHttpParams httpParams = new BasicHttpParams();
+			HttpConnectionParams.setConnectionTimeout(httpParams, REQUEST_TIMEOUT);
+			HttpConnectionParams.setSoTimeout(httpParams, SO_TIMEOUT);
+			HttpClient client = new DefaultHttpClient(httpParams);
+			return client;
+		}
 }

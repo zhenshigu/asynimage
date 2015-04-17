@@ -62,6 +62,14 @@
             android:name=".AddAdr"
             android:label="@string/title_activity_add_adr" >
         </activity>
+        <activity
+            android:name=".OrderManage"
+            android:label="@string/title_activity_order_manage" >
+        </activity>
+        <activity
+            android:name=".OrderDetail"
+            android:label="@string/title_activity_order_detail" >
+        </activity>
     </application>
 
 </manifest>

@@ -16,6 +16,7 @@ public class Index extends TabActivity  {
 		ExitUtil.activityList.add(this);
 		final TabHost tabHost=getTabHost();
 		tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("餐厅").setContent(new Intent(this,MainActivity.class)));
-		tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("我的").setContent(new Intent(this,P1.class)));
+		tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("订单").setContent(new Intent(this,OrderManage.class)));
+		tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("我的").setContent(new Intent(this,P1.class)));
 	}
 }

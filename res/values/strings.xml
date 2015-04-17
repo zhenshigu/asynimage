@@ -12,5 +12,7 @@
     <string name="title_activity_confirm_order">ConfirmOrder</string>
     <string name="title_activity_manage_address">ManageAddress</string>
     <string name="title_activity_add_adr">AddAdr</string>
+    <string name="title_activity_order_manage">OrderManage</string>
+    <string name="title_activity_order_detail">OrderDetail</string>
 
 </resources>
