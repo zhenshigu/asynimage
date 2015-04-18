@@ -134,6 +134,20 @@ Runnable addRunnable=new Runnable() {
 @Override
 public void click(View v) {
 	// TODO Auto-generated method stub
-	startActivity(new Intent(OrderManage.this,OrderDetail.class));
+	Map<String, String> tmpMap=(Map<String, String>) v.getTag();
+	Bundle bundle=new Bundle();
+	bundle.putString("lid", tmpMap.get("lid"));
+	bundle.putString("xdate", tmpMap.get("xdate"));
+	bundle.putString("status", tmpMap.get("status"));
+	bundle.putString("tdate", tmpMap.get("tdate"));
+	bundle.putString("destination", tmpMap.get("destination"));
+	bundle.putString("sum", tmpMap.get("sum"));
+	bundle.putString("rid", tmpMap.get("rid"));
+	bundle.putString("rname", tmpMap.get("rname"));
+	bundle.putString("telephone", tmpMap.get("telephone"));
+	Intent intent=new Intent();
+	intent.setClass(OrderManage.this, OrderDetail.class);
+	intent.putExtras(bundle);
+	startActivity(intent);
 }
 }

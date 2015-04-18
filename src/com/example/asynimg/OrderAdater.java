@@ -50,6 +50,7 @@ public class OrderAdater extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
+		final int pos=position;
 		final viewHolder holder;
 		if (convertView==null) {
 			Log.i("addressadater getview", "convertview null");
@@ -77,6 +78,7 @@ public class OrderAdater extends BaseAdapter{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				arg0.setTag(orderList.get(pos));
 				mCallback.click(arg0);
 			}
 		});

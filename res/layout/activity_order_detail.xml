@@ -37,14 +37,35 @@
         android:layout_height="wrap_content" >
     </ListView>
     <TextView
-            android:id="@+id/detail"
+            android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
-      <ListView
-        android:id="@+id/listView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+    <TextView
+            android:id="@+id/detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单详情" />
+    <TextView
+            android:id="@+id/lid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单编号:" />
+     <TextView
+            android:id="@+id/xdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下单时间:" />
+     <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机号码:" />
+     <TextView
+            android:id="@+id/destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收餐地址:" />
+     
     </LinearLayout>
 </LinearLayout>
