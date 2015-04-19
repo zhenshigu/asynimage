@@ -4,28 +4,38 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/xdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="TextView" />
-
-    <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="TextView" />
+        android:text="状态" />
 
     <TextView
-        android:id="@+id/sum"
+        android:id="@+id/xdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_toRightOf="@+id/xdate"
-        android:text="TextView" />
+        android:text="时间" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/button1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/rname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="餐厅" />
+
+        <TextView
+            android:id="@+id/sum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="总价" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/button1"
@@ -33,16 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/rname"
-        android:text="Button" />
-
-    <TextView
-        android:id="@+id/rname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/sum"
-        android:layout_below="@+id/xdate"
-        android:layout_marginTop="22dp"
-        android:text="TextView" />
+        android:layout_below="@+id/status"
+        android:layout_marginTop="20dp"
+        android:text="详情" />
 
 </RelativeLayout>

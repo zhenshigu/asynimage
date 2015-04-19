@@ -39,12 +39,17 @@ public class OrderManage extends Activity implements OrderCallback{
 	private RelativeLayout noorderLayout;
 	private LinearLayout hasorderLayout;
 	private Handler handler;
-	private OrderAdater adater;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_order_manage);
 		initView();
+		
+	}
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
 		boolean isLogin=spPreferences.getBoolean("isLogin", false);
 		Log.i("ordermanage islogin", String.valueOf(isLogin));
 		if (isLogin) {
@@ -56,7 +61,7 @@ public class OrderManage extends Activity implements OrderCallback{
 		 spPreferences=getSharedPreferences("userinfo", 0);
 		 noorderLayout=(RelativeLayout)findViewById(R.id.noorder);
 		 hasorderLayout=(LinearLayout)findViewById(R.id.hasorder);
-		 adater=new OrderAdater(this, new ArrayList<Map<String,String>>(), this);
+		final OrderAdater  adater=new OrderAdater(this, new ArrayList<Map<String,String>>(), this);
 		 orderListView.setAdapter(adater);
 		 handler=new Handler(){
 			 public void handleMessage(Message msg) {
@@ -118,7 +123,7 @@ Runnable addRunnable=new Runnable() {
 				// 判断是否请求成功
 				if (response.getStatusLine().getStatusCode() == 200) {
 					String responseMsg = EntityUtils.toString(response.getEntity());
-					Log.i("manageaddress run", responseMsg);
+					Log.i("orderManage getDingdan", responseMsg);
 						Message message=handler.obtainMessage(1,1,1,responseMsg);
 						handler.sendMessage(message);
 				}else {

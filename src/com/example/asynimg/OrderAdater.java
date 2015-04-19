@@ -69,9 +69,17 @@ public class OrderAdater extends BaseAdapter{
 		String xdate=orderList.get(position).get("xdate");
 		String status=orderList.get(position).get("status");
 		String sum=orderList.get(position).get("sum");
-		holder.xdate.setText(xdate);
+		holder.xdate.setText("下单时间:"+xdate);
 		holder.rname.setText(rname);
-		holder.status.setText(status);
+		String tmpString;
+		if (Integer.valueOf(status)==0) {
+			tmpString="订单未完成";
+		}else if (Integer.valueOf(status)==1) {
+			tmpString="订单完成";
+		}else {
+			tmpString="订单取消";
+		}
+		holder.status.setText(tmpString);
 		holder.sum.setText("￥"+sum);
 		holder.button.setOnClickListener(new OnClickListener() {
 			
@@ -92,6 +100,7 @@ public class OrderAdater extends BaseAdapter{
 		Button button;
 	}
 	public void addItems(List<Map<String, String>> rList) {
+		orderList.clear();
 		orderList.addAll(rList);
 		notifyDataSetChanged();
 	}

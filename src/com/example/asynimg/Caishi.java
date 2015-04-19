@@ -19,6 +19,7 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.asynimg.CaishiAdater.Callback;
@@ -27,6 +28,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -84,14 +86,14 @@ public class Caishi extends Activity implements Callback{
 	       Button buycart=(Button)findViewById(R.id.buycar);
 	       TextView carinfo=(TextView)findViewById(R.id.carinfo);
 	       Button btnok=(Button)findViewById(R.id.btnok);
-	       final JSONArray dingdan=new JSONArray();
 	        btnok.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
+					final JSONArray dingdan=new JSONArray();
 					Map mylist=shopcart.getAll();
-//					 Log.i("caishi size",String.valueOf(mylist.size()));
+					 Log.i("caishi size",String.valueOf(mylist.size()));
 					Iterator iterator=mylist.entrySet().iterator();
 					while(iterator.hasNext()){
 						Map.Entry entry = (Map.Entry) iterator.next();  
@@ -103,9 +105,14 @@ public class Caishi extends Activity implements Callback{
 					 Log.i("caishi buy", dingdan.toString());
 					 //===20150415提交购物车数据到服务器
 					 String json=dingdan.toString();
-					 
 					 //===============================
 					shopcart.edit().clear().commit();
+					mylist.clear();
+					Intent intent=new Intent();
+					intent.setClass(Caishi.this, ConfirmOrder.class);
+					intent.putExtra("json", json);
+					intent.putExtra("rid", rid);
+					startActivity(intent);
 				}
 			});
 	       

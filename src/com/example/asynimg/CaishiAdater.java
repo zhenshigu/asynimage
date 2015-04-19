@@ -105,9 +105,10 @@ public class CaishiAdater extends BaseAdapter{
 				holder.delButton.setVisibility(View.VISIBLE);
 				SharedPreferences sp=context.getSharedPreferences("mycart", 0);
 				Editor editor=sp.edit();
-				editor.remove(caishiList.get(pos).get("name"));
+				editor.remove(caishiList.get(pos).get("name")).commit();
 				JSONObject item=new JSONObject();
 				try {
+					item.put("name", caishiList.get(pos).get("name"));
 					item.put("vid", caishiList.get(pos).get("vid"));
 					item.put("price", caishiList.get(pos).get("price"));
 					item.put("count", count);
@@ -160,6 +161,7 @@ public class CaishiAdater extends BaseAdapter{
 				editor.remove(caishiList.get(pos).get("name"));
 					JSONObject item=new JSONObject();
 					try {
+						item.put("name", caishiList.get(pos).get("name"));
 						item.put("vid", caishiList.get(pos).get("vid"));
 						item.put("price", caishiList.get(pos).get("price"));
 						item.put("count", count);
