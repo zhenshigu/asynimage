@@ -8,28 +8,37 @@
         android:layout_height="fill_parent"
         android:layout_weight="1" >
 </com.handmark.pulltorefresh.library.PullToRefreshListView>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="4" >
-        <Button
+
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="4" >
+
+    <Button
         android:id="@+id/buycar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:background="@drawable/cart" />
 
-        <TextView
-            android:id="@+id/carinfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+    <Button
+        android:id="@+id/btnok"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@+id/buycar"
+        android:layout_alignBottom="@+id/buycar"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/menu_button"
+        android:text="选好了" />
 
-        <Button
-            android:id="@+id/btnok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-        
-    </LinearLayout>
+    <TextView
+        android:id="@+id/carinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buycar"
+        android:layout_alignBottom="@+id/buycar"
+        android:layout_centerHorizontal="true"
+        android:text="0" />
+
+</RelativeLayout>
+
 </LinearLayout>

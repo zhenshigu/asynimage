@@ -55,19 +55,28 @@ public class PicUtil {
 		}
 		return icon;
 	}
-	public static String getResturant(String resurl,String start,String num) throws ClientProtocolException, IOException {
+	public static String getResturant(String resurl,String start,String num,String shenString,String shiString,String xianString) throws ClientProtocolException, IOException {
 		HttpClient client=new DefaultHttpClient();
 		HttpPost request=new HttpPost(resurl);
+//		shenString=java.net.URLEncoder.encode(shenString,"utf-8");
+//		shiString=java.net.URLEncoder.encode(shiString,"utf-8");
+//		xianString=java.net.URLEncoder.encode(xianString,"utf-8");
 		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
 		postParameters.add(new BasicNameValuePair("start", start));
 		postParameters.add(new BasicNameValuePair("num", num));
+		//=======20150506修改增加地址选择=======
+		postParameters.add(new BasicNameValuePair("shen",shenString));
+		postParameters.add(new BasicNameValuePair("shi",shiString));
+		postParameters.add(new BasicNameValuePair("xian",xianString));
+		Log.i("picutil getresturant",postParameters.toString());
+		//=======================================
 		String result=null;
 		try {
-			UrlEncodedFormEntity formEntity=new UrlEncodedFormEntity(postParameters);
+			UrlEncodedFormEntity formEntity=new UrlEncodedFormEntity(postParameters,HTTP.UTF_8);//中文指定编码为utf-8
 			request.setEntity(formEntity);
 			HttpResponse response=client.execute(request);
 			 result=EntityUtils.toString(response.getEntity());
-			 Log.i("picutil getresturant", result);
+			 Log.i("picutil getresturant", formEntity.toString());
 //			 JSONArray resJsonArray=new JSONArray(result);
 //			 for (int i = 0; i < resJsonArray.length(); i++) {
 //					JSONObject tmp=resJsonArray.getJSONObject(i);

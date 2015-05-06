@@ -67,7 +67,7 @@ public class Caishi extends Activity implements Callback{
 	      listView1.setAdapter(caishiAdater);
 	       String  current=String.valueOf(caishiAdater.getCount());
 	       rid=getIntent().getExtras().getString("rid");
-	       final String num="2";
+	       final String num="5";
 	       new CaiWorker(caishiAdater).execute(url,rid,current,num);
 	       //上拉下拉更新餐厅列表测试
 	        mPullToRefreshListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
@@ -83,9 +83,12 @@ public class Caishi extends Activity implements Callback{
 	        	  }
 	        	});
 	      //==========================================
-	       Button buycart=(Button)findViewById(R.id.buycar);
-	       TextView carinfo=(TextView)findViewById(R.id.carinfo);
 	       Button btnok=(Button)findViewById(R.id.btnok);
+	       TextView carinfoTextView=(TextView)findViewById(R.id.carinfo);
+	       if (carinfoTextView.getText().toString().equals("0")) {
+	    	   	 btnok.setEnabled(false);
+				 btnok.setBackgroundResource(R.drawable.disabled);
+		}
 	        btnok.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -121,7 +124,15 @@ public class Caishi extends Activity implements Callback{
 	public void click(View v) {
 		// TODO Auto-generated method stub
 			TextView carinfo=(TextView)findViewById(R.id.carinfo);
-			carinfo.setText(String.valueOf(v.getTag()));
+			carinfo.setText("总共是￥"+String.valueOf(v.getTag()));
+			Button btnok=(Button)findViewById(R.id.btnok);
+			if (Integer.valueOf(String.valueOf(v.getTag()))==0) {
+				 btnok.setEnabled(false);
+				 btnok.setBackgroundResource(R.drawable.disabled);
+			}else {
+				btnok.setEnabled(true);
+				btnok.setBackgroundResource(R.drawable.menu_button);
+			}
 	}
 	private void submitJson(String json){
 		String urlStr = "http://10.0.2.2:8080/DingCan/index.php/server/customerManage/verify";
@@ -155,5 +166,11 @@ public class Caishi extends Activity implements Callback{
 		HttpClient client = new DefaultHttpClient(httpParams);
 		return client;
 	}
+	@Override
+		public void onBackPressed() {
+			// TODO Auto-generated method stub
+			super.onBackPressed();
+			shopcart.edit().clear().commit();
+		}
 }
 	

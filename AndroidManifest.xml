@@ -70,6 +70,10 @@
             android:name=".OrderDetail"
             android:label="@string/title_activity_order_detail" >
         </activity>
+        <activity
+            android:name=".Main"
+            android:label="@string/title_activity_main" >
+        </activity>
     </application>
 
 </manifest>

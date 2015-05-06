@@ -43,6 +43,7 @@ public class OrderDetail extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		 ExitUtil.activityList.add(this);
 		setContentView(R.layout.activity_order_detail);
 		initView();
 		new Thread(addRunnable).start();
@@ -62,6 +63,7 @@ public class OrderDetail extends Activity {
 		final Button confirmButton=(Button)findViewById(R.id.confirm);
 		bundle=getIntent().getExtras();
 		mylid=bundle.getString("lid");
+		statusTextView.getPaint().setFakeBoldText(true);
 		if (Integer.valueOf(bundle.getString("status"))==0) {
 			statusTextView.setText("下单成功,美食正在做中...");
 			buttongruop.setVisibility(View.VISIBLE);
@@ -243,5 +245,9 @@ Runnable addRunnable=new Runnable() {
 				e.printStackTrace();
 			}
 		}
+	};
+	public void onBackPressed() {
+		Log.i("orderdetail", "back is pressed");
+		startActivity(new Intent(this, OrderManage.class));
 	};
 }

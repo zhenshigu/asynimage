@@ -25,8 +25,18 @@ public class ResturantWorker extends AsyncTask<String, Void, String>{
 		String resurl=arg0[0];
 		String start=arg0[1];
 		String num=arg0[2];
+		//=====20150506修改增加地址选择=============
+		String shenString=arg0[3];
+		String shiString=arg0[4];
+		String xianString=arg0[5];
+		Log.i("resturantworker shen", shenString);
+		Log.i("resturantworker shi", shiString);
+		Log.i("resturantworker xian", xianString);
+		//=============================================
 		try {
-			String jsonOfResturant=PicUtil.getResturant(resurl, start, num);
+			//=====20150506修改增加地址选择=============
+			String jsonOfResturant=PicUtil.getResturant(resurl, start, num,shenString,shiString,xianString);
+			//============================================
 			return jsonOfResturant;
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block

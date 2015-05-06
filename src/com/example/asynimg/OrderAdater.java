@@ -7,6 +7,7 @@ import com.example.asynimg.AddressAdater.myCallback;
 import com.example.asynimg.AddressAdater.viewHolder;
 
 import android.content.Context;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +71,7 @@ public class OrderAdater extends BaseAdapter{
 		String status=orderList.get(position).get("status");
 		String sum=orderList.get(position).get("sum");
 		holder.xdate.setText("下单时间:"+xdate);
+		holder.rname.getPaint().setFakeBoldText(true);
 		holder.rname.setText(rname);
 		String tmpString;
 		if (Integer.valueOf(status)==0) {
@@ -79,6 +81,8 @@ public class OrderAdater extends BaseAdapter{
 		}else {
 			tmpString="订单取消";
 		}
+		TextPaint tp=holder.status.getPaint();
+		tp.setFakeBoldText(true);
 		holder.status.setText(tmpString);
 		holder.sum.setText("￥"+sum);
 		holder.button.setOnClickListener(new OnClickListener() {

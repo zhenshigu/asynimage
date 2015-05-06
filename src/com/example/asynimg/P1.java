@@ -1,9 +1,6 @@
 package com.example.asynimg;
 
-import android.support.v7.app.ActionBarActivity;
-import android.R.bool;
-import android.app.ActivityManager;
-import android.app.backup.SharedPreferencesBackupHelper;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,10 +17,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class P1 extends ActionBarActivity {
+public class P1 extends Activity {
 	private String username;
 	private String tag;
 	private SharedPreferences sharedPreferences;
@@ -39,7 +37,7 @@ public class P1 extends ActionBarActivity {
 				case 0:
 					LinearLayout layout=(LinearLayout)findViewById(R.id.logintip);
 					layout.setVisibility(View.GONE);
-					LinearLayout layout2=(LinearLayout)findViewById(R.id.myaddress);
+					RelativeLayout layout2=(RelativeLayout)findViewById(R.id.myaddress);
 					layout2.setVisibility(View.VISIBLE);
 					
 					
@@ -106,7 +104,7 @@ public class P1 extends ActionBarActivity {
 		else {
 			LinearLayout layout=(LinearLayout)findViewById(R.id.logintip);
 			layout.setVisibility(View.GONE);
-			LinearLayout layout2=(LinearLayout)findViewById(R.id.myaddress);
+			RelativeLayout layout2=(RelativeLayout)findViewById(R.id.myaddress);
 			layout2.setVisibility(View.VISIBLE);
 			Button addButton=(Button)findViewById(R.id.button1);
 			addButton.setOnClickListener(new OnClickListener() {
@@ -122,9 +120,9 @@ public class P1 extends ActionBarActivity {
 			ListView personinfo=(ListView)findViewById(R.id.personinfo);
 			personinfo.setVisibility(View.VISIBLE);
 			ArrayAdapter<String> infoAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-			infoAdapter.add(sharedPreferences.getString("name", "null"));
-			infoAdapter.add(sharedPreferences.getString("email", "null"));
-			infoAdapter.add(sharedPreferences.getString("phone", "null"));
+			infoAdapter.add("用户名:"+sharedPreferences.getString("name", "null"));
+			infoAdapter.add("邮箱:"+sharedPreferences.getString("email", "null"));
+			infoAdapter.add("手机:"+sharedPreferences.getString("phone", "null"));
 			personinfo.setAdapter(infoAdapter);
 		}
 	}

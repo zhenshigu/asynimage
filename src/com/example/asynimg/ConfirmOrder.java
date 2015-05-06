@@ -21,6 +21,7 @@ import android.R.array;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -60,6 +61,11 @@ private String str;
 		String[] typeStrings={"货到付款"};
 		ArrayAdapter< String> paytype=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,typeStrings);
 		spinner2.setAdapter(paytype);
+		int color=Color.argb(50, 157, 210, 247);
+		spinner.setBackgroundColor(color);
+		spinner2.setBackgroundColor(color);
+//		spinner.setBackgroundResource(R.drawable.spin);
+//		spinner2.setBackgroundResource(R.drawable.spin);
 		Button confirm=(Button)findViewById(R.id.confirm);
 		confirm.setOnClickListener(new OnClickListener() {
 			
@@ -111,6 +117,8 @@ private String str;
 						e.printStackTrace();
 					}
 					break;
+				case 3:
+					startActivity(new Intent(ConfirmOrder.this, OrderManage.class));
 				}
 			};
 		};
@@ -146,6 +154,7 @@ private String str;
 		}
 		
 	}
+	//获得订餐地址
 	Runnable getAddr=new Runnable() {
 		
 		@Override
@@ -178,6 +187,7 @@ private String str;
 			}
 		}
 	};
+	//提交订单
 Runnable confirmOrder=new Runnable() {
 		
 		@Override
@@ -201,7 +211,7 @@ Runnable confirmOrder=new Runnable() {
 				tmpJsonObject=null;
 				vd=getIntent().getStringExtra("json");
 				Log.i("confirmorder vd", vd);
-				startActivity(new Intent(ConfirmOrder.this, OrderManage.class));
+				
 			} catch (JSONException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace(); 
@@ -221,8 +231,8 @@ Runnable confirmOrder=new Runnable() {
 					String responseMsg = EntityUtils.toString(response.getEntity());
 					Log.i("manageaddress run", responseMsg);
 					
-//					Message message=handler.obtainMessage(1,1,1,responseMsg);
-//					handler.sendMessage(message);
+					Message message=handler.obtainMessage(3,1,1,responseMsg);
+					handler.sendMessage(message);
 				}else {
 					Log.i("login", response.getStatusLine().toString());
 				}

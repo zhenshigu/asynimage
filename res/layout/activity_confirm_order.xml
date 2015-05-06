@@ -2,28 +2,82 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:textColor="#FBFBFB"
+        android:gravity="center"
+        android:background="@drawable/text"
+        android:layout_marginBottom="10dp"
+        android:text="选择收餐地址" />
 
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <View
+  android:layout_width="fill_parent"
+  android:layout_height="20dip"
+  android:background="#F7F7F7"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:textColor="#FBFBFB"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/text"
+        android:text="付款方式" />
+
  <Spinner
         android:id="@+id/spinner2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+ <View
+  android:layout_width="fill_parent"
+  android:layout_height="20dip"
+  android:background="#F7F7F7"/>
+
+ <TextView
+     android:id="@+id/textView3"
+    android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:textColor="#FBFBFB"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/text"
+     android:text="购物详情" />
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp" >
     </ListView>
   <TextView
         android:id="@+id/total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView" />
-   <Button
-        android:id="@+id/confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="去下单" />
+  <View
+  android:layout_width="fill_parent"
+  android:layout_height="20dip"
+  android:background="#F7F7F7"/>
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" >
+
+          <Button
+              android:id="@+id/confirm"
+              android:layout_width="100dp"
+              android:layout_height="30dp"
+              android:layout_alignParentRight="true"
+              android:layout_alignParentTop="true"
+              android:layout_marginRight="25dp"
+              android:background="@drawable/bb"
+              android:text="去下单" />
+
+   </RelativeLayout>
+
 </LinearLayout>

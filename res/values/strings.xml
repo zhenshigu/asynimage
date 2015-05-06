@@ -14,5 +14,6 @@
     <string name="title_activity_add_adr">AddAdr</string>
     <string name="title_activity_order_manage">OrderManage</string>
     <string name="title_activity_order_detail">OrderDetail</string>
+    <string name="title_activity_main">Main</string>
 
 </resources>

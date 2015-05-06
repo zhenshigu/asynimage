@@ -42,6 +42,7 @@ public class OrderManage extends Activity implements OrderCallback{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		 ExitUtil.activityList.add(this);
 		setContentView(R.layout.activity_order_manage);
 		initView();
 		
@@ -155,4 +156,8 @@ public void click(View v) {
 	intent.putExtras(bundle);
 	startActivity(intent);
 }
+public void onBackPressed() {
+	Log.i("orderManage", "back is pressed");
+	startActivity(new Intent(this, Index.class));
+};
 }

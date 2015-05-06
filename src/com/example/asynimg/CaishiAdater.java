@@ -87,8 +87,9 @@ public class CaishiAdater extends BaseAdapter{
 		}else {
 			holder=(viewholder)convertView.getTag();
 		}
-		holder.name.setText(caishiList.get(position).get("name"));
-		holder.price.setText(caishiList.get(position).get("price"));
+		holder.name.getPaint().setFakeBoldText(true);
+		holder.name.setText("["+caishiList.get(position).get("name")+"]");
+		holder.price.setText("  ￥"+caishiList.get(position).get("price"));
 		holder.description.setText(caishiList.get(position).get("descrition"));
 		holder.button.setOnClickListener(new OnClickListener() {
 			
