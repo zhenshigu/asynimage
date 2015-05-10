@@ -146,6 +146,8 @@ public class OrderDetail extends Activity {
 						List<NameValuePair> params = new ArrayList<NameValuePair>();
 						String lidString=bundle.getString("lid");
 						params.add(new BasicNameValuePair("lid",lidString));
+						params.add(new BasicNameValuePair("rid",bundle.getString("rid")));//20150508 增加rid参数
+						Log.i("orderdetail cancelorder rid", bundle.getString("rid"));
 						try {
 							// 设置请求参数项
 							request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
