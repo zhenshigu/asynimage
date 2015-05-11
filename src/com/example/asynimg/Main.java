@@ -91,7 +91,7 @@ public class Main extends Activity {
        String theshenString="广东";
        String theshiString="普宁";
        String thexianString="流沙";
-       new ResturantWorker(updateAdater2).execute(url,current,"2",province,city,district);
+       new ResturantWorker(updateAdater2).execute(url,current,"1",province,city,district);
 //       new ResturantWorker(updateAdater2).execute(url,current,"2");the origin code
        //======================================================
        //上拉下拉更新餐厅列表测试
@@ -99,12 +99,14 @@ public class Main extends Activity {
        	  @Override
        	  public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
        		 String  current=String.valueOf(updateAdater2.getCount());
-              new ResturantWorker(updateAdater2).execute(url,current,"2");
+//              new ResturantWorker(updateAdater2).execute(url,current,"2");out-date
+       		new ResturantWorker(updateAdater2).execute(url,current,"1",province,city,district);//20150510 new added
        	  }
        	  @Override
        	  public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
        		 String  current=String.valueOf(updateAdater2.getCount());
-              new ResturantWorker(updateAdater2).execute(url,current,"2");
+//              new ResturantWorker(updateAdater2).execute(url,current,"2");out-date
+       		new ResturantWorker(updateAdater2).execute(url,current,"1",province,city,district);//20150510 new added
        	  }
        	});
    }
@@ -291,14 +293,14 @@ public void onBackPressed() {
 		
 		public void onItemSelected(AdapterView<?> adapterView, View view, int position,
 				long id) {
-			UpdateAdater2  myupdateAdater2=new UpdateAdater2(Main.this, new ArrayList<Map<String,String>>(), caches,mPullToRefreshListView);
-			listView1.setAdapter(myupdateAdater2);
+//			UpdateAdater2  myupdateAdater2=new UpdateAdater2(Main.this, new ArrayList<Map<String,String>>(), caches,mPullToRefreshListView);
+			listView1.setAdapter(updateAdater2);
 			district=((MyListItem) adapterView.getItemAtPosition(position)).getName();
 		       district=district.substring(0, district.length()-1);
 			final String url="http://10.0.2.2:8080/DingCan/index.php/server/showResturant/getResByPlace";
 		
-			 String  current=String.valueOf(myupdateAdater2.getCount());
-			new ResturantWorker(myupdateAdater2).execute(url,current,"2",province,city,district);
+			 String  current=String.valueOf(updateAdater2.getCount());
+			new ResturantWorker(updateAdater2).execute(url,current,"1",province,city,district);
 			
 //			district=((MyListItem) adapterView.getItemAtPosition(position)).getName();
 //			district=district.substring(0, district.length()-1);

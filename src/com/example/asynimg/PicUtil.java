@@ -76,7 +76,7 @@ public class PicUtil {
 			request.setEntity(formEntity);
 			HttpResponse response=client.execute(request);
 			 result=EntityUtils.toString(response.getEntity());
-			 Log.i("picutil getresturant", formEntity.toString());
+			 Log.i("picutil getresturant result",result);
 //			 JSONArray resJsonArray=new JSONArray(result);
 //			 for (int i = 0; i < resJsonArray.length(); i++) {
 //					JSONObject tmp=resJsonArray.getJSONObject(i);
