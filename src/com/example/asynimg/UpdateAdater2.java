@@ -134,4 +134,8 @@ public class UpdateAdater2 extends BaseAdapter{
 		notifyDataSetChanged();
 		mListView.onRefreshComplete();
 	}
+	//20150601添加清空updateadater2绑定的数据
+	public void clearall() {
+		resturantsList.clear();
+	}
 }

@@ -57,8 +57,9 @@ public class Login extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		ExitUtil.activityList.add(this);
 		setContentView(R.layout.activity_login);
-		sp = getSharedPreferences("userinfo", 0);
+		sp = getSharedPreferences("userinfo", 0);//获取存储用户的信息
 		InitView();
+		//设置是否自动登录
 		autologin.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
@@ -73,18 +74,18 @@ public class Login extends Activity implements OnClickListener {
 				
 			}
 		});
-		sp.edit().putBoolean("autologin", autologin.isChecked()).commit();
+		sp.edit().putBoolean("autologin", autologin.isChecked()).commit();//保存自动登录属性到userinfo
 		  handler= new Handler() {
 			public void handleMessage(Message msg) {
 				switch (msg.what) {
-				case 0:
+				case 0://登录成功
 //					Toast.makeText(getApplicationContext(), "登录成功！",
 //							Toast.LENGTH_SHORT).show();
 					Intent intent=new Intent(Login.this,P1.class);
 					setResult(1, intent);
 					finish();
 					break;
-				case 1:
+				case 1://输入的密码错误
 					Toast.makeText(getApplicationContext(), "输入的密码错误",
 							Toast.LENGTH_SHORT).show();
 					break;
@@ -102,6 +103,7 @@ public class Login extends Activity implements OnClickListener {
 			Password.setText(bundle.getString("password"));
 		}
 	}
+	//初始化界面
 	private void InitView() {
 		// TODO Auto-generated method stub
 		registertextview = (TextView) findViewById(R.id.register_text);
@@ -130,16 +132,16 @@ public class Login extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.login_cancle:
+		case R.id.login_cancle://登录取消
 			this.finish();
 			break;
 
-		case R.id.BtnMenulogin:
+		case R.id.BtnMenulogin://登录
 
 			Loginbtn();
 
 			break;
-		case R.id.register_text:
+		case R.id.register_text://注册
 			Intent intent=new Intent(Login.this, Register.class);
 			startActivityForResult(intent, 2);
 		default:
@@ -152,18 +154,18 @@ public class Login extends Activity implements OnClickListener {
 				|| LoginName.getText().toString().trim().length() > 20
 				|| LoginName.getText().toString().trim().length() < 4) {
 			usernameerrorid.setVisibility(View.VISIBLE);
-			usernameerrorid.setText("用户名错误");
+			usernameerrorid.setText("用户名不规范");
 		} 
 		else if (Password.getText().toString().trim().equals("")
 				|| Password.getText().toString().trim().length() > 16
 				|| Password.getText().toString().trim().length() < 3) {
 			passworderrorid.setVisibility(View.VISIBLE);
-			passworderrorid.setText("密码错误");
+			passworderrorid.setText("密码不规范");
 		} 
 		else {
 			Thread loginThread = new Thread(new LoginThread());
 
-			loginThread.start();
+			loginThread.start();//启动登录线程
 		}
 	}
 	// LoginThread线程类

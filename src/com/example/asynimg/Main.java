@@ -294,7 +294,8 @@ public void onBackPressed() {
 		public void onItemSelected(AdapterView<?> adapterView, View view, int position,
 				long id) {
 //			UpdateAdater2  myupdateAdater2=new UpdateAdater2(Main.this, new ArrayList<Map<String,String>>(), caches,mPullToRefreshListView);
-			listView1.setAdapter(updateAdater2);
+			updateAdater2.clearall();//20150601添加清空updateadater2绑定的数据
+//			listView1.setAdapter(updateAdater2);20150601注释掉，貌似多余
 			district=((MyListItem) adapterView.getItemAtPosition(position)).getName();
 		       district=district.substring(0, district.length()-1);
 			final String url="http://10.0.2.2:8080/DingCan/index.php/server/showResturant/getResByPlace";
